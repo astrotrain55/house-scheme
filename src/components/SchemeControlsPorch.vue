@@ -195,3 +195,18 @@ export default {
   name: 'scheme-controls-porch',
 };
 </script>
+
+<style lang="stylus">
+.table-porch
+  border-collapse collapse
+  width 100%
+  border 1px solid
+  margin-top 20px
+  th
+    font-size 10px
+  td
+    border-top 1px solid
+    &:first-child
+      font-weight bold
+      font-size 10px
+</style>

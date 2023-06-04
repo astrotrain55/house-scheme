@@ -1,5 +1,6 @@
 <template>
-  <div class="scheme-controls">
+  <div>
+    <scheme-controls-create-house></scheme-controls-create-house>
     <div>
       <span>Расположение ящиков</span>
       <label>
@@ -75,9 +76,10 @@
 <script>
 import { mapState, mapActions } from 'pinia';
 import { useRootStore } from '@/stores/RootStore';
+import SchemeControlsCreateHouse from './SchemeControlsCreateHouse.vue';
+import SchemeControlsPorch from './SchemeControlsPorch.vue';
 import ModalWindow from './fragments/ModalWindow.vue';
 import AppTabs from './fragments/AppTabs.vue';
-import SchemeControlsPorch from './SchemeControlsPorch.vue';
 
 export default {
   methods: {
@@ -131,15 +133,11 @@ export default {
     };
   },
   components: {
+    SchemeControlsCreateHouse,
+    SchemeControlsPorch,
     ModalWindow,
     AppTabs,
-    SchemeControlsPorch,
   },
   name: 'scheme-controls',
 };
 </script>
-
-<style lang="stylus">
-.scheme-controls
-  margin-bottom 60px
-</style>
