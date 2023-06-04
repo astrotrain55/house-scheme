@@ -8,9 +8,8 @@ import config from '../tools/config';
 import calculateNumbers from '../tools/calculateNumbers';
 
 export default class SchemeHouse {
-  constructor(options, store = {}) {
+  constructor(options) {
     this.options = options;
-    this.store = store;
     this.house = {};
     this.porches = [];
   }

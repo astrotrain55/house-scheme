@@ -74,8 +74,8 @@
             <td>
               <control-counter
                 v-if="floor.type === 'default'"
-                :default-value="floor.appt"
-                @change="setApptFloor(floor, $event)"
+                :default-number="floor.appt"
+                @update="setApptFloor(floor, $event)"
               ></control-counter>
             </td>
           </tr>

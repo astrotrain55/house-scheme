@@ -20,7 +20,7 @@ export default {
   methods: {
     onChange(index) {
       this.index = index;
-      this.$emit('change', index);
+      this.$emit('update', index);
     },
   },
   mounted() {
@@ -49,6 +49,7 @@ export default {
 .app-tabs
   &__buttons
     display flex
+    flex-wrap wrap
     column-gap 5px
   &__button
     &.active

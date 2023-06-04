@@ -1,13 +1,8 @@
 <template>
   <div class="control-counter">
-    <button @click="onInput(defaultValue - 1)">-</button>
-    <input
-      type="text"
-      ref="input"
-      :value="defaultValue"
-      @input="onInput(Number($event.target.value))"
-    >
-    <button @click="onInput(defaultValue + 1)">+</button>
+    <button @click="onInput(defaultNumber - 1)">-</button>
+    <input type="text" :value="defaultNumber" @input="onInput(Number($event.target.value))">
+    <button @click="onInput(defaultNumber + 1)">+</button>
   </div>
 </template>
 
@@ -16,12 +11,11 @@ export default {
   methods: {
     onInput(value) {
       const count = value < this.min ? this.min : value > this.max ? this.max : value;
-      this.$refs.input.value = count;
-      this.$emit('change', count);
+      this.$emit('update', count);
     },
   },
   props: {
-    defaultValue: {
+    defaultNumber: {
       type: Number,
       required: true,
     },

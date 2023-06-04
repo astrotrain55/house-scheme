@@ -37,7 +37,7 @@
     <div>
       <button @click="autoBoxes">Автозаполнение</button>
     </div>
-    <div style="display: flex;column-gap: 10px;justify-content: center;">
+    <div style="display: flex;flex-wrap: wrap;column-gap: 10px;justify-content: center;">
       <button
         v-for="(porch, key) in config.porches"
         :key="key"
@@ -48,7 +48,7 @@
       <app-tabs
         :names="config.porches.map((porch) => porch.name)"
         :default-value="tabs.show"
-        @change="tabs.show = $event"
+        @update="tabs.show = $event"
       >
         <scheme-controls-porch
           v-for="(porch, key) in config.porches"

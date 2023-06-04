@@ -3,42 +3,42 @@
     <div>
       Количество подъездов
       <control-counter
-        :default-value="scheme.porchesCount"
+        :default-number="scheme.porchesCount"
         :min="1"
-        @change="scheme.porchesCount = $event"
+        @update="scheme.porchesCount = $event"
       ></control-counter>
     </div>
     <div>
       Количество этажей
       <control-counter
-        :default-value="scheme.floorsCount"
+        :default-number="scheme.floorsCount"
         :min="1"
-        @change="scheme.floorsCount = $event"
+        @update="scheme.floorsCount = $event"
       ></control-counter>
     </div>
     <div>
       Количество квартир
       <control-counter
-        :default-value="scheme.apptCount"
-        @change="scheme.apptCount = $event"
+        :default-number="scheme.apptCount"
+        @update="scheme.apptCount = $event"
       ></control-counter>
     </div>
     <div>
       Подъезд ящика
       <control-counter
-        :default-value="scheme.boxPorch"
+        :default-number="scheme.boxPorch"
         :min="1"
         :max="scheme.porchesCount"
-        @change="scheme.boxPorch = $event"
+        @update="scheme.boxPorch = $event"
       ></control-counter>
     </div>
     <div>
       Этаж ящика
       <control-counter
-        :default-value="scheme.boxFloor"
+        :default-number="scheme.boxFloor"
         :min="1"
         :max="scheme.floorsCount"
-        @change="scheme.boxFloor = $event"
+        @update="scheme.boxFloor = $event"
       ></control-counter>
     </div>
     <button @click="submit">Нарисовать</button>
