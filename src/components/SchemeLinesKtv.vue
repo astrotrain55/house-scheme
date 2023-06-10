@@ -40,29 +40,24 @@ export default {
       const findFn = (point) => point.ess.type === 'default' && !point.ess.entity;
       const startFloor = this.pointsFloors.map((p) => p).find(findFn);
       const endFloor = this.pointsFloors.map((p) => p).reverse().find(findFn);
-      const top = startFloor.coords.top;
-      const bottom = endFloor.coords.bottom;
+      const { top } = startFloor.coords;
+      const { bottom } = endFloor.coords;
       const porchRight = this.coords.right;
-      const coords = indexes.map((left) => {
-        return [left, left + 6, left + 12, left + 18].map((offset) => {
-          return [
-            [porchRight + offset, top],
-            [porchRight + offset, bottom],
-          ];
-        });
-      });
+      const coords = indexes.map((left) => [left, left + 6, left + 12, left + 18].map((offset) => [
+        [porchRight + offset, top],
+        [porchRight + offset, bottom],
+      ]));
 
-      const rectangles = this.pointsFloors.filter(findFn).map((floor) => {
-        return indexes.map((left) => {
-          return [left, left + 6, left + 12, left + 18].map((offset, index) => {
-            return {
-                x: porchRight + offset - 3,
-                y: (index % 2 === 0) ? floor.coords.top + 15 : floor.coords.top + 30,
-                size: 6,
-              };
-          });
-        });
-      });
+      const rectangles = this.pointsFloors
+        .filter(findFn)
+        .map((floor) => indexes.map((left) => {
+          const tempCoords = [left, left + 6, left + 12, left + 18];
+          return tempCoords.map((offset, index) => ({
+            x: porchRight + offset - 3,
+            y: (index % 2 === 0) ? floor.coords.top + 15 : floor.coords.top + 30,
+            size: 6,
+          }));
+        }));
 
       return {
         polyline: coords.flat(),

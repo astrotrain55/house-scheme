@@ -14,7 +14,11 @@
         </label>
       </div>
       <div style="display: flex;column-gap: 20px;">
-        <div v-for="(rise, index) in risers" :key="index" style="display: flex;flex-direction: column;align-items: flex-start;">
+        <div
+          v-for="(rise, index) in risers"
+          :key="index"
+          style="display: flex;flex-direction: column;align-items: flex-start;"
+        >
           <span>Стояк {{ index + 1 }}</span>
           <label>
             <input

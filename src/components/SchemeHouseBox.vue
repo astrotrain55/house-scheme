@@ -44,7 +44,11 @@
         :width="20"
         :height="20"
       >
-        <button class="moving-button" v-html="'&#8593;'" @click="movingBox(['up', box.id])"></button>
+        <button
+          class="moving-button"
+          v-html="'&#8593;'"
+          @click="movingBox(['up', box.id])"
+        ></button>
       </foreignObject>
       <foreignObject
         :x="points.x + points.width - 20"
@@ -52,7 +56,11 @@
         :width="20"
         :height="20"
       >
-        <button class="moving-button" v-html="'&#8595;'" @click="movingBox(['down', box.id])"></button>
+        <button
+          class="moving-button"
+          v-html="'&#8595;'"
+          @click="movingBox(['down', box.id])"
+        ></button>
       </foreignObject>
     </template>
   </g>

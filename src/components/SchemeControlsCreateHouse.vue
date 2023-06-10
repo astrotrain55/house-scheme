@@ -59,7 +59,7 @@ export default {
     submit() {
       const porches = [];
 
-      for (let i = 0; i < this.scheme.porchesCount; i++) {
+      for (let i = 0; i < this.scheme.porchesCount; i += 1) {
         porches.push({
           UF_XML_ID: uuid(),
           UF_NUMBER: String(i + 1),
@@ -90,11 +90,11 @@ export default {
     },
   },
   watch: {
-    'scheme.porchesCount'(value) {
+    'scheme.porchesCount': function (value) {
       if (this.scheme.boxPorch > value) this.scheme.boxPorch = value;
     },
 
-    'scheme.floorsCount'(value) {
+    'scheme.floorsCount': function (value) {
       if (this.scheme.boxFloor > value) this.scheme.boxFloor = value;
     },
   },

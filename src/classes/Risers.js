@@ -9,7 +9,7 @@ export default class SchemeRisers {
   fillList() {
     const risers = [];
 
-    for (let i = 0; i < config.riserCount; i++) {
+    for (let i = 0; i < config.riserCount; i += 1) {
       const riser = this.createRiser(i === 0);
       risers.push(riser);
     }

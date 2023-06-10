@@ -4,7 +4,7 @@ const calcAppt = (countAppt, countPorches) => {
   // если не делится то вычисляем остаток
   const balancePorch = countAppt - (apptInPorch * countPorches);
 
-  return (indexPorch) => (indexPorch === 0) ? apptInPorch + balancePorch : apptInPorch;
+  return (indexPorch) => ((indexPorch === 0) ? apptInPorch + balancePorch : apptInPorch);
 };
 
 const getApptInFloor = (apptInPorch, countFloors) => {
@@ -12,12 +12,12 @@ const getApptInFloor = (apptInPorch, countFloors) => {
   const remainder = countFloors - (apptInPorch % countFloors);
   const result = [];
 
-  for (let i = countFloors; i > 0; i--) {
+  for (let i = countFloors; i > 0; i -= 1) {
     result.unshift((i > remainder) ? apptResult + 1 : apptResult);
   }
 
   return (indexFloor) => result[indexFloor];
-}
+};
 
 const getListApptInFloor = (countAppt, countFloors) => {
   const listFloors = {};
@@ -30,25 +30,21 @@ const getListApptInFloor = (countAppt, countFloors) => {
   return listFloors;
 };
 
-const getItem = (count, countView, countFloors) => {
-  return {
-    count,
-    countView,
-    floors: getListApptInFloor(count, countFloors),
-  };
-};
+const getItem = (count, countView, countFloors) => ({
+  count,
+  countView,
+  floors: getListApptInFloor(count, countFloors),
+});
 
-const parseNok = (array, countFloors) => {
-  return array.reduce((total, { NUM: porch, FLATS: numbers }) => {
-    const [ from, to ] = numbers.split('-');
-    const apt = (from && to) ? (+to - +from + 1) : 0;
-    const aptView = (from && to) ? numbers : 0;
+const parseNok = (array, countFloors) => array.reduce((total, { NUM: porch, FLATS: numbers }) => {
+  const [from, to] = numbers.split('-');
+  const apt = (from && to) ? (+to - +from + 1) : 0;
+  const aptView = (from && to) ? numbers : 0;
 
-    total[porch] = getItem(apt, aptView, countFloors);
+  total[porch] = getItem(apt, aptView, countFloors);
 
-    return total;
-  }, {});
-}
+  return total;
+}, {});
 
 export default (options) => {
   const { countPorches, countAppt, countFloors } = options;

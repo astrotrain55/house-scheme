@@ -40,12 +40,10 @@ export default {
             top3 = top - 10;
             top8 = top3 - 10;
           }
-        } else {
-          if (index === 0) {
-            top = porch.coords.top + 10;
-            top3 = top + 10;
-            top8 = top3 + 10;
-          }
+        } else if (index === 0) {
+          top = porch.coords.top + 10;
+          top3 = top + 10;
+          top8 = top3 + 10;
         }
 
         floors.forEach((floor) => {
@@ -86,7 +84,11 @@ export default {
           [searchBox.coords.right - 150, searchBox.origin ? top : searchBox.type === '3' ? top3 : top8],
         ];
         if (!searchBox.origin) {
-          const ind = searchBox.porch < origin.porch ? -10 : searchBox.porch > origin.porch ? 10 : 0;
+          const ind = searchBox.porch < origin.porch
+            ? -10
+            : searchBox.porch > origin.porch
+              ? 10
+              : 0;
           points.push([origin.coords.right - 150 + ind, searchBox.type === '3' ? top3 : top8]);
           if (searchBox.type === '8') {
             points.push([origin.coords.right - 150 + ind, origin.coords.top + 25]);

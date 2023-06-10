@@ -13,27 +13,21 @@ export default class Coords {
   parsePorches(porches, visibleAll) {
     const visibleFilter = (ess) => visibleAll || ess.visible;
 
-    return porches.filter(visibleFilter).map((porch) => {
-      return {
-        ess: porch,
-        sizes: porch.sizes,
-        offset: porch.offset,
-        isTower: porch.isTower,
-        floors: porch.floors.filter(visibleFilter).map((floor) => {
-          return {
-            ess: floor,
-            sizes: floor.sizes,
-            tower: floor.tower,
-            boxes: floor.boxes.map((box) => {
-              return {
-                ess: box,
-                sizes: box.sizes,
-              };
-            }),
-          };
-        }),
-      };
-    });
+    return porches.filter(visibleFilter).map((porch) => ({
+      ess: porch,
+      sizes: porch.sizes,
+      offset: porch.offset,
+      isTower: porch.isTower,
+      floors: porch.floors.filter(visibleFilter).map((floor) => ({
+        ess: floor,
+        sizes: floor.sizes,
+        tower: floor.tower,
+        boxes: floor.boxes.map((box) => ({
+          ess: box,
+          sizes: box.sizes,
+        })),
+      })),
+    }));
   }
 
   calculate() {
@@ -79,7 +73,9 @@ export default class Coords {
     floorBoxes.forEach((box, index) => {
       const top = (index + 1) * floorOffset + index * box.sizes.height + floorCoords.top;
       const offset = this.offset(config.sizes.porch.width, box.sizes.width);
-      const left = isTower ? floorCoords.left + floorOffset : floorCoords.right - box.sizes.width - offset;
+      const left = isTower
+        ? floorCoords.left + floorOffset
+        : floorCoords.right - box.sizes.width - offset;
       const right = left + box.sizes.width;
       const coords = {
         top,
@@ -110,7 +106,7 @@ export default class Coords {
     porchFloors.forEach((floor, index) => {
       const floorsSizes = this.floorsSizes[index];
       const top = index === 0 ? porchCoords.top : floors[index - 1].coords.bottom;
-      const left = porchCoords.left;
+      const { left } = porchCoords;
       const coords = {
         top,
         right: left + floor.sizes.width,

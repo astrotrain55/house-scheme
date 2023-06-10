@@ -27,19 +27,19 @@ export default class SchemeHouse {
       porch.floors.forEach((floor) => {
         floor.boxes.forEach((box, i) => {
           if (!box.origin) floor.boxes.splice(i, 1);
-        })
-      })
-    })
+        });
+      });
+    });
   }
 
   searchBox() {
-    for (let p = 0; p < this.porches.length; p++) {
+    for (let p = 0; p < this.porches.length; p += 1) {
       const porch = this.porches[p];
 
-      for (let f = 0; f < porch.floors.length; f++) {
+      for (let f = 0; f < porch.floors.length; f += 1) {
         const floor = porch.floors[f];
 
-        for (let b = 0; b < floor.boxes.length; b++) {
+        for (let b = 0; b < floor.boxes.length; b += 1) {
           const box = floor.boxes[b];
           if (porch.visible && box.origin) return p;
         }
@@ -60,7 +60,7 @@ export default class SchemeHouse {
       const leftPart = [];
       const rightPart = [];
 
-      for (let i = 0; i < this.porches.length; i++) {
+      for (let i = 0; i < this.porches.length; i += 1) {
         if (i < porchNumber) leftPart.push(i);
         if (i > porchNumber) rightPart.push(i);
       }
@@ -100,7 +100,7 @@ export default class SchemeHouse {
       right: [],
     };
 
-    for (let i = 0; i < this.porches.length; i++) {
+    for (let i = 0; i < this.porches.length; i += 1) {
       if (i < porchNumber) parts.left.push(i);
       if (i > porchNumber) parts.right.push(i);
     }
@@ -158,10 +158,10 @@ export default class SchemeHouse {
     if (isFantom) {
       typesBoxes = this.getTypesNew(fantomBox);
     } else if (
-      (params.type === 'low' || !visibleKtv) &&
-      (remains.maxInternet >= apartmentsCount)
+      (params.type === 'low' || !visibleKtv)
+      && (remains.maxInternet >= apartmentsCount)
     ) {
-      typesBoxes = this.getTypesNew('null')
+      typesBoxes = this.getTypesNew('null');
     }
 
     if (params.direction === 'center-left' && params.parts.left.length && params.maxCountPorchLeft) {
@@ -237,7 +237,7 @@ export default class SchemeHouse {
         return isInternet || isKtv;
       };
 
-      for (let i = start; i < typesBoxes.length; i++) {
+      for (let i = start; i < typesBoxes.length; i += 1) {
         if (!isParsePorch()) break;
         const type = typesBoxes[i];
         const nextType = typesBoxes[i + 1];
@@ -266,17 +266,16 @@ export default class SchemeHouse {
 
     if (boxes.length > 1 && fantom) {
       return this.newLogicParsePorch(types, options);
-    } else {
-      return {
-        boxes,
-        isFantom: Boolean(fantom) && boxes.length === 1,
-        remains: {
-          internet: Math.abs(remainderInternet),
-          ktv: Math.abs(remainderKtv),
-          maxInternet: remainderMaxInternet,
-        },
-      };
     }
+    return {
+      boxes,
+      isFantom: Boolean(fantom) && boxes.length === 1,
+      remains: {
+        internet: Math.abs(remainderInternet),
+        ktv: Math.abs(remainderKtv),
+        maxInternet: remainderMaxInternet,
+      },
+    };
   }
 
   parsePorch(porch, apptCount, types, options = {}) {
@@ -288,7 +287,7 @@ export default class SchemeHouse {
     recursiveHandler();
 
     function recursiveHandler(start = 0) {
-      for (let i = start; i < types.length; i++) {
+      for (let i = start; i < types.length; i += 1) {
         if (visibleInternet && visibleKtv) {
           if (remainderInternet <= 0 && remainderKtv <= 0) break;
         } else if (visibleInternet) {
@@ -309,12 +308,10 @@ export default class SchemeHouse {
         if (remainderInternet > 0) {
           if (remainderKtv > 0) {
             recursiveHandler();
+          } else if (options.remainderMaxInternet) {
+            recursiveHandler(i + 1);
           } else {
-            if (options.remainderMaxInternet) {
-              recursiveHandler(i + 1);
-            } else {
-              recursiveHandler();
-            }
+            recursiveHandler();
           }
         }
       }
@@ -327,14 +324,13 @@ export default class SchemeHouse {
       if (options.search.type === 'center-right') options.search.type = 'left';
 
       return this.parsePorch(porch, apptCount, config.typesBoxes, options);
-    } else {
-      return {
-        internet: Math.abs(remainderInternet),
-        ktv: Math.abs(remainderKtv),
-        boxes,
-        remainderMaxInternet: options.remainderMaxInternet,
-      };
     }
+    return {
+      internet: Math.abs(remainderInternet),
+      ktv: Math.abs(remainderKtv),
+      boxes,
+      remainderMaxInternet: options.remainderMaxInternet,
+    };
   }
 
   autoBoxesTech(options) {
@@ -408,8 +404,8 @@ export default class SchemeHouse {
         options.search.rightPart.shift();
         options.typesBoxes = typesBoxes;
       } else if (
-        (options.search.type === 'left' && options.search.leftPart.length) ||
-        (options.search.type === 'right' && !options.search.rightPart.length)
+        (options.search.type === 'left' && options.search.leftPart.length)
+        || (options.search.type === 'right' && !options.search.rightPart.length)
       ) {
         options.search.type = 'left';
         options.porchNumber = options.search.leftPorch;
@@ -423,23 +419,21 @@ export default class SchemeHouse {
         options.search.rightPorch = options.search.rightPorch + 1;
         options.search.rightPart.shift();
       }
+    } else if (
+      (options.search.type !== 'right' && options.search.leftPart.length)
+        || (options.search.type === 'right' && !options.search.rightPart.length)
+    ) {
+      options.search.type = 'left';
+      options.porchNumber = options.search.leftPorch;
+      options.search.leftPorch = options.search.leftPorch - 1;
+      options.search.leftPart.pop();
+      options.typesBoxes = getTypes();
     } else {
-      if (
-        (options.search.type !== 'right' && options.search.leftPart.length) ||
-        (options.search.type === 'right' && !options.search.rightPart.length)
-      ) {
-        options.search.type = 'left';
-        options.porchNumber = options.search.leftPorch;
-        options.search.leftPorch = options.search.leftPorch - 1;
-        options.search.leftPart.pop();
-        options.typesBoxes = getTypes();
-      } else {
-        options.search.type = 'right';
-        options.porchNumber = options.search.rightPorch;
-        options.search.rightPorch = options.search.rightPorch + 1;
-        options.search.rightPart.shift();
-        options.typesBoxes = getTypes();
-      }
+      options.search.type = 'right';
+      options.porchNumber = options.search.rightPorch;
+      options.search.rightPorch = options.search.rightPorch + 1;
+      options.search.rightPart.shift();
+      options.typesBoxes = getTypes();
     }
 
     this.autoBoxesTech({
@@ -542,7 +536,7 @@ export default class SchemeHouse {
     const boxFloors = [];
     let empty = true;
 
-    for (let i = 0; i < limit; i++) {
+    for (let i = 0; i < limit; i += 1) {
       const f = floors.shift();
 
       if (!f) break;
@@ -561,7 +555,7 @@ export default class SchemeHouse {
     if (empty) {
       floor.boxes.push(new Box({
         name: type,
-        type: type,
+        type,
         floors: boxFloors,
       }));
     }
@@ -573,7 +567,7 @@ export default class SchemeHouse {
     const boxFloors = [];
     let empty = true;
 
-    for (let i = 0; i < limit; i++) {
+    for (let i = 0; i < limit; i += 1) {
       const f = floors.pop();
 
       if (!f) break;
@@ -592,7 +586,7 @@ export default class SchemeHouse {
     if (empty && sector[index]) {
       sector[index].boxes.push(new Box({
         name: type,
-        type: type,
+        type,
         floors: boxFloors,
       }));
     }
@@ -634,7 +628,13 @@ export default class SchemeHouse {
         porch.floors[index].boxes.unshift(box);
       } else {
         const index = dir === 'up' ? options.boxIndex - 1 : options.boxIndex + 1;
-        [floor.boxes[options.boxIndex], floor.boxes[index]] = [floor.boxes[index], floor.boxes[options.boxIndex]];
+        [
+          floor.boxes[options.boxIndex],
+          floor.boxes[index],
+        ] = [
+          floor.boxes[index],
+          floor.boxes[options.boxIndex],
+        ];
       }
 
       function recursive(indexFloor) {
@@ -644,7 +644,7 @@ export default class SchemeHouse {
         if (floor.visible) return index;
         return recursive(index);
       }
-    }
+    };
 
     let options = null;
 
@@ -672,7 +672,13 @@ export default class SchemeHouse {
     if (!index) return;
 
     this.porches.forEach((porch) => {
-      [porch.floors[indexFloor], porch.floors[index]] = [porch.floors[index], porch.floors[indexFloor]];
+      [
+        porch.floors[indexFloor],
+        porch.floors[index],
+      ] = [
+        porch.floors[index],
+        porch.floors[indexFloor],
+      ];
     });
 
     function recursive(indexFloor) {
@@ -749,7 +755,7 @@ export default class SchemeHouse {
     const floors = [];
     const techFloors = this.getListTechFloors(porch, mapPorch);
 
-    for (let counter = 0; counter < countFloors; counter++) {
+    for (let counter = 0; counter < countFloors; counter += 1) {
       const floorNumber = counter + 1;
 
       floors.push(new Floor({

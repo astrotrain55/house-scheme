@@ -66,7 +66,7 @@ function initScheme(options) {
 }
 
 const { config, coords } = initScheme(defaultOptions);
-const colors = configScheme.colors;
+const { colors } = configScheme;
 
 export const useRootStore = defineStore('RootStore', {
   state() {
