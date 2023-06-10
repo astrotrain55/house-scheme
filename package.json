@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "public": "npm run build && node pages.js"
+    "public": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "pinia": "^2.0.36",
