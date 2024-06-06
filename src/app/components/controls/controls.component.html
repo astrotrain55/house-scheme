@@ -3,47 +3,84 @@
   <div>
     <span>Расположение ящиков</span>
     <label>
-      <input type="radio" [(ngModel)]="boxesPosition" value="default" (change)="onBoxesPosition()">
+      <input
+        type="radio"
+        [(ngModel)]="boxesPosition"
+        value="default"
+        (change)="onBoxesPosition()"
+      />
       <span>Жилые этажи</span>
     </label>
     <label>
-      <input type="radio" [(ngModel)]="boxesPosition" value="tech" (change)="onBoxesPosition()">
+      <input
+        type="radio"
+        [(ngModel)]="boxesPosition"
+        value="tech"
+        (change)="onBoxesPosition()"
+      />
       <span>Тех.этажи</span>
     </label>
   </div>
   <div>
     <span>Разводка</span>
     <label>
-      <input type="radio" [(ngModel)]="routingPosition" value="top" (change)="onRoutingPosition()">
+      <input
+        type="radio"
+        [(ngModel)]="routingPosition"
+        value="top"
+        (change)="onRoutingPosition()"
+      />
       <span>Сверху</span>
     </label>
     <label>
-      <input type="radio" [(ngModel)]="routingPosition" value="bottom" (change)="onRoutingPosition()">
+      <input
+        type="radio"
+        [(ngModel)]="routingPosition"
+        value="bottom"
+        (change)="onRoutingPosition()"
+      />
       <span>Снизу</span>
     </label>
   </div>
   <div>
     <span>Направление</span>
     <label>
-      <input type="radio" [(ngModel)]="directionCalculation" value="left" (change)="onDirectionCalculation()">
+      <input
+        type="radio"
+        [(ngModel)]="directionCalculation"
+        value="left"
+        (change)="onDirectionCalculation()"
+      />
       <span>Слева</span>
     </label>
     <label>
-      <input type="radio" [(ngModel)]="directionCalculation" value="right" (change)="onDirectionCalculation()">
+      <input
+        type="radio"
+        [(ngModel)]="directionCalculation"
+        value="right"
+        (change)="onDirectionCalculation()"
+      />
       <span>Справа</span>
     </label>
   </div>
   <div>
     <button (click)="autoBoxes()">Автозаполнение</button>
   </div>
-  <div style="display: flex;flex-wrap: wrap;column-gap: 10px;justify-content: center;">
+  <div
+    style="
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 10px;
+      justify-content: center;
+    "
+  >
     @for (porch of porches; track key; let key = $index) {
-      <button
-        (click)="tabs.show = key;modal.show = true;"
-      >{{ porch.name }}</button>
+      <button (click)="tabs.show = key; modal.show = true">
+        {{ porch.name }}
+      </button>
     }
   </div>
-  <app-popup [show]="modal.show" title="Подъезды" (close)="modal.show = false;">
+  <app-popup [show]="modal.show" title="Подъезды" (close)="modal.show = false">
     <app-tabs
       [names]="names"
       [defaultValue]="tabs.show"
@@ -59,13 +96,17 @@
   </app-popup>
   <div>
     <label>
-      <input type="checkbox" [(ngModel)]="debug" (change)="onDebug()">
+      <input type="checkbox" [(ngModel)]="debug" (change)="onDebug()" />
       <span>Отладка</span>
     </label>
   </div>
   <div>
     <label>
-      <input type="checkbox" [(ngModel)]="visibleAll" (change)="onVisibleAll()">
+      <input
+        type="checkbox"
+        [(ngModel)]="visibleAll"
+        (change)="onVisibleAll()"
+      />
       <span>Показать всё</span>
     </label>
   </div>

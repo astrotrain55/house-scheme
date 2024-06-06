@@ -5,7 +5,9 @@
         class="app-tabs__button"
         [class.active]="index === key"
         (click)="onChange(key)"
-      >{{ name }}</button>
+      >
+        {{ name }}
+      </button>
     }
   </div>
   <div class="app-tabs__content">
