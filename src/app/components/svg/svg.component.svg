@@ -1,0 +1,23 @@
+@if (coords.porches.length) {
+  <svg
+    [attr.viewBox]="coords.svg.viewBox.join(' ')"
+    [attr.width]="coords.svg.width"
+    [attr.height]="coords.svg.height"
+  >
+    <app-svg-lines-optical></app-svg-lines-optical>
+    <g data-item="porches" data-name="Подъезды">
+      @for (porch of coords.porches; track porch.ess.id; let index = $index) {
+        <app-svg-house-porch
+          [porchId]="porch.ess.id"
+          [porchNumber]="porch.ess.name"
+          [porch]="porch.ess"
+          [coords]="porch.coords"
+          [points]="porch.points"
+          [pointsFloors]="porch.floors"
+          [floors]="porch.ess.floors"
+          [first]="index === 0"
+        ></app-svg-house-porch>
+      }
+    </g>
+  </svg>
+}

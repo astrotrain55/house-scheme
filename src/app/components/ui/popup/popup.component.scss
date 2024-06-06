@@ -1,0 +1,35 @@
+.modal-window {
+  position: relative;
+  z-index: 999;
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(black, .6);
+  }
+
+  &__content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid;
+    background-color: beige;
+    box-sizing: border-box;
+    min-width: 400px;
+    max-height: calc(100% - 20px);
+    height: 100%;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+}

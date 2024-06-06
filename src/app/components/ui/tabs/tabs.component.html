@@ -1,0 +1,14 @@
+<div class="app-tabs">
+  <div class="app-tabs__buttons">
+    @for (name of names; track name; let key = $index) {
+      <button
+        class="app-tabs__button"
+        [class.active]="index === key"
+        (click)="onChange(key)"
+      >{{ name }}</button>
+    }
+  </div>
+  <div class="app-tabs__content">
+    <ng-content></ng-content>
+  </div>
+</div>

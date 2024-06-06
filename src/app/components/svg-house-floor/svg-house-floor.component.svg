@@ -1,0 +1,136 @@
+<svg:g
+  data-item="floor"
+  [attr.data-name]="floorNumber"
+  (mouseenter)="visibleButtons = true"
+  (mouseleave)="visibleButtons = false"
+>
+  @if (!floor.visible) {
+    <polygon
+      [attr.points]="pointsHiddenArea"
+      fill="lightgray"
+    ></polygon>
+  }
+  <polyline
+    [attr.points]="floorCoords"
+    stroke="black"
+    stroke-width="2"
+    stroke-dasharray="20,2,5,2"
+    fill="transparent"
+  ></polyline>
+  @if (floor.porch.visibleCaption && !floor.tower) {
+    <text
+      [attr.x]="textCoords.x"
+      [attr.y]="textCoords.y"
+    >{{ floorNumber }}</text>
+  }
+
+  @if (floor.type === 'default' && !floor.entity) {
+    <foreignObject
+      [attr.x]="coords.right - 290"
+      [attr.y]="coords.top + 15"
+      [attr.width]="25"
+      [attr.height]="25"
+    >
+      <input
+        type="text"
+        title="Количество квартир на этаже"
+        [value]="floor.appt"
+        (input)="setApptFloor(floor, $event)"
+        style="display: block;width: 25px;height: 25px;text-align: center;box-sizing: border-box;"
+      >
+    </foreignObject>
+  }
+
+  <g data-item="boxes" data-name="Ящики">
+    @for (item of floor.boxes; track item.id; let index = $index) {
+      <app-svg-house-box
+        [box]="item"
+        [color]="floor.porch.debug() ? floor.color : item.origin ? '#ff7f50' : colors.box.value"
+        [points]="pointsBoxes[index].points"
+      ></app-svg-house-box>
+    }
+  </g>
+
+  @if (floor.type === 'default' && !floor.entity) {
+    <g
+      data-item="risers"
+      data-name="Стояки"
+    >
+      @if (floor.porch.risers.list[0].visible) {
+        <g
+          data-item="riser"
+          data-name="Стояк 1"
+        >
+          <rect
+            [attr.x]="coords.right - 250"
+            [attr.y]="coords.top + 5"
+            [attr.width]="40"
+            [attr.height]="floor.sizes.height - 10"
+            stroke="black"
+            stroke-width="2"
+            [attr.fill]="floor.porch.debug() ? floor.color : 'transparent'"
+          ></rect>
+        </g>
+      }
+      @if (floor.porch.risers.list[1].visible) {
+        <g
+          data-item="riser"
+          data-name="Стояк 2"
+        >
+          <rect
+            [attr.x]="coords.right - 90"
+            [attr.y]="coords.top + 5"
+            [attr.width]="40"
+            [attr.height]="floor.sizes.height - 10"
+            stroke="black"
+            stroke-width="2"
+            [attr.fill]="floor.porch.debug() ? floor.color : 'transparent'"
+          ></rect>
+        </g>
+      }
+      @if (floor.porch.risers.list[2].visible) {
+        <g
+          data-item="riser"
+          data-name="Стояк 3"
+        >
+          <rect
+            [attr.x]="coords.right - 45"
+            [attr.y]="coords.top + 5"
+            [attr.width]="40"
+            [attr.height]="floor.sizes.height - 10"
+            stroke="black"
+            stroke-width="2"
+            [attr.fill]="floor.porch.debug() ? floor.color : 'transparent'"
+          ></rect>
+        </g>
+      }
+    </g>
+  }
+
+  @if (floor.moving && firstPorch) {
+    <ng-template>
+      <foreignObject
+        [attr.x]="coords.right - 340"
+        [attr.y]="coords.top"
+        [attr.width]="20"
+        [attr.height]="20"
+      >
+        <button
+          class="moving-button"
+          (click)="movingTechFloor('up', floor)"
+        >&#8593;</button>
+      </foreignObject>
+      <foreignObject
+        [attr.x]="coords.right - 340"
+        [attr.y]="coords.top + floor.sizes.height - 20"
+        [attr.width]="20"
+        [attr.height]="20"
+      >
+        <button
+          class="moving-button"
+          (click)="movingTechFloor('down', floor)"
+        >&#8595;</button>
+      </foreignObject>
+    </ng-template>
+  }
+</svg:g>

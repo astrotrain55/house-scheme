@@ -1,0 +1,26 @@
+<svg:g data-item="porch" [attr.data-name]="porchNumber" [attr.data-id]="porchId">
+  <polyline
+    [attr.points]="porchCoords"
+    stroke="black"
+    stroke-width="2"
+    stroke-dasharray="20,2,5,2"
+    fill="transparent"
+  ></polyline>
+  <g data-item="floors" data-name="Этажи">
+    @for (floor of pointsFloors; track floor.ess.id) {
+      <app-svg-house-floor
+        [floorNumber]="floor.ess.name"
+        [floor]="floor.ess"
+        [points]="floor.points"
+        [coords]="floor.coords"
+        [pointsBoxes]="floor.boxes"
+        [firstPorch]="first"
+      ></app-svg-house-floor>
+    }
+  </g>
+  <app-svg-lines-ktv
+    [coords]="coords"
+    [pointsFloors]="pointsFloors"
+    [porch]="porch"
+  ></app-svg-lines-ktv>
+</svg:g>

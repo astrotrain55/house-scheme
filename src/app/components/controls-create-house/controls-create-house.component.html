@@ -1,0 +1,45 @@
+<div class="scheme-controls-create-house">
+  <div>
+    Количество подъездов
+    <app-counter
+      [defaultNumber]="scheme.porchesCount"
+      [min]="1"
+      (update)="scheme.porchesCount = $event"
+    ></app-counter>
+  </div>
+  <div>
+    Количество этажей
+    <app-counter
+      [defaultNumber]="scheme.floorsCount"
+      [min]="1"
+      (update)="scheme.floorsCount = $event"
+    ></app-counter>
+  </div>
+  <div>
+    Количество квартир
+    <app-counter
+      [defaultNumber]="scheme.apptCount"
+      (update)="scheme.apptCount = $event"
+    ></app-counter>
+  </div>
+  <div>
+    Подъезд ящика
+    <app-counter
+      [defaultNumber]="scheme.boxPorch"
+      [min]="1"
+      [max]="scheme.porchesCount"
+      (update)="scheme.boxPorch = $event"
+    ></app-counter>
+  </div>
+  <div>
+    Этаж ящика
+    <app-counter
+      [defaultNumber]="scheme.boxFloor"
+      [min]="1"
+      [max]="scheme.floorsCount"
+      (update)="scheme.boxFloor = $event"
+    ></app-counter>
+  </div>
+  <button (click)="submit()">Нарисовать</button>
+  <button (click)="createDefaultScheme()">По умолчанию</button>
+</div>

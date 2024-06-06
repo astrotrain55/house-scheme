@@ -1,0 +1,3 @@
+<svg:g data-item="internet" data-name="Интернет">
+  {{ lines }}
+</svg:g>

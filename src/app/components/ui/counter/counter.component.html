@@ -1,0 +1,9 @@
+<div class="control-counter">
+  <button (click)="onInput(defaultNumber - 1)">-</button>
+  <input
+    type="text"
+    [value]="defaultNumber"
+    (input)="onChange($event)"
+  />
+  <button (click)="onInput(defaultNumber + 1)">+</button>
+</div>

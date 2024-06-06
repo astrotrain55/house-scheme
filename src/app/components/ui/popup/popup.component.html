@@ -1,0 +1,14 @@
+@if (show) {
+  <div class="modal-window">
+    <div class="modal-window__overlay" (click)="onClose()"></div>
+    <div class="modal-window__content">
+      @if (header) {
+        <header class="modal-window__header">
+          {{ title }}
+          <button class="modal-window__close" (click)="onClose()">x</button>
+        </header>
+      }
+      <ng-content></ng-content>
+    </div>
+  </div>
+}

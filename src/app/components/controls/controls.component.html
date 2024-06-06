@@ -1,0 +1,72 @@
+<div>
+  <app-controls-create-house></app-controls-create-house>
+  <div>
+    <span>Расположение ящиков</span>
+    <label>
+      <input type="radio" [(ngModel)]="boxesPosition" value="default">
+      <span>Жилые этажи</span>
+    </label>
+    <label>
+      <input type="radio" [(ngModel)]="boxesPosition" value="tech">
+      <span>Тех.этажи</span>
+    </label>
+  </div>
+  <div>
+    <span>Разводка</span>
+    <label>
+      <input type="radio" [(ngModel)]="routingPosition" value="top">
+      <span>Сверху</span>
+    </label>
+    <label>
+      <input type="radio" [(ngModel)]="routingPosition" value="bottom">
+      <span>Снизу</span>
+    </label>
+  </div>
+  <div>
+    <span>Направление</span>
+    <label>
+      <input type="radio" [(ngModel)]="directionCalculation" value="left">
+      <span>Слева</span>
+    </label>
+    <label>
+      <input type="radio" [(ngModel)]="directionCalculation" value="right">
+      <span>Справа</span>
+    </label>
+  </div>
+  <div>
+    <button (click)="autoBoxes()">Автозаполнение</button>
+  </div>
+  <div style="display: flex;flex-wrap: wrap;column-gap: 10px;justify-content: center;">
+    @for (porch of porches; track key; let key = $index) {
+      <button
+        (click)="tabs.show = key;modal.show = true;"
+      >{{ porch.name }}</button>
+    }
+  </div>
+  <app-popup [show]="modal.show" title="Подъезды" (close)="modal.show = false;">
+    <app-tabs
+      [names]="names"
+      [defaultValue]="tabs.show"
+      (update)="tabs.show = $event"
+    >
+      @for (porch of porches; track key; let key = $index) {
+        <app-controls-porch
+          [porch]="porch"
+          [class.active]="tabs.show === key"
+        ></app-controls-porch>
+      }
+    </app-tabs>
+  </app-popup>
+  <div>
+    <label>
+      <input type="checkbox" [(ngModel)]="debug">
+      <span>Отладка</span>
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" [(ngModel)]="visibleAll">
+      <span>Показать всё</span>
+    </label>
+  </div>
+</div>
