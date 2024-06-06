@@ -4,10 +4,13 @@
     [attr.width]="coords.svg.width"
     [attr.height]="coords.svg.height"
   >
-    <app-svg-lines-optical></app-svg-lines-optical>
+    <g data-item="optical" data-name="Оптика"></g>
     <g data-item="porches" data-name="Подъезды">
       @for (porch of coords.porches; track porch.ess.id; let index = $index) {
-        <app-svg-house-porch
+        <g
+          data-item="porch"
+          [attr.data-name]="porch.ess.name"
+          [attr.data-id]="porch.ess.id"
           [porchId]="porch.ess.id"
           [porchNumber]="porch.ess.name"
           [porch]="porch.ess"
@@ -16,7 +19,7 @@
           [pointsFloors]="porch.floors"
           [floors]="porch.ess.floors"
           [first]="index === 0"
-        ></app-svg-house-porch>
+        ></g>
       }
     </g>
   </svg>

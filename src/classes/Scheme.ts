@@ -16,9 +16,9 @@ import type {
   IFloor,
   IHouse,
   IOptions,
+  IPorchRaw,
   IPorch,
 } from '../types';
-import type { IPorchRaw } from '../types/porch.types';
 
 export default class SchemeHouse {
   options: IOptions;

@@ -3,7 +3,7 @@ import { StoreService } from '../../services/store.service';
 import type { IBox } from '../../../types';
 
 @Component({
-  selector: 'app-svg-house-box',
+  selector: '[data-item="box"]',
   standalone: true,
   imports: [],
   templateUrl: './svg-house-box.component.svg',

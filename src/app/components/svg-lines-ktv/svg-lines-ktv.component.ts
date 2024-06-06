@@ -3,7 +3,7 @@ import { StoreService } from '../../services/store.service';
 import type { IFloorCoords, IPorch } from '../../../types';
 
 @Component({
-  selector: 'app-svg-lines-ktv',
+  selector: '[data-item="ktv"]',
   standalone: true,
   imports: [],
   templateUrl: './svg-lines-ktv.component.svg',

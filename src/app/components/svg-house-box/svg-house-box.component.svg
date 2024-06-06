@@ -1,8 +1,5 @@
 @if (isVisible) {
   <svg:g
-    data-item="box"
-    [attr.data-name]="box.name"
-    [attr.data-id]="box.id"
     (mouseenter)="visibleButtons = true"
     (mouseleave)="visibleButtons = false"
   >

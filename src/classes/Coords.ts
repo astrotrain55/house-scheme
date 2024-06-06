@@ -1,5 +1,5 @@
 import config from '../tools/config';
-import {
+import type {
   IBoxCoords,
   IBoxCoordsCalculate,
   IFloor,

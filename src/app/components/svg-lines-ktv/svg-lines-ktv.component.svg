@@ -1,18 +1,16 @@
-<svg:g data-item="ktv" data-name="КТВ">
-  @for (line of ktvList.polyline; track line) {
-    <polyline
-      [attr.points]="line"
-      [attr.stroke]="color"
-      fill="none"
-    ></polyline>
-  }
-  @for (rect of ktvList.rect; track rect) {
-    <rect
-      [attr.x]="rect.x"
-      [attr.y]="rect.y"
-      [attr.width]="rect.size"
-      [attr.height]="rect.size"
-      [attr.fill]="color"
-    ></rect>
-  }
-</svg:g>
+@for (line of ktvList.polyline; track line) {
+  <svg:polyline
+    [attr.points]="line"
+    [attr.stroke]="color"
+    fill="none"
+  ></svg:polyline>
+}
+@for (rect of ktvList.rect; track rect) {
+  <svg:rect
+    [attr.x]="rect.x"
+    [attr.y]="rect.y"
+    [attr.width]="rect.size"
+    [attr.height]="rect.size"
+    [attr.fill]="color"
+  ></svg:rect>
+}

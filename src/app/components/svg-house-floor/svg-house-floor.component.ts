@@ -4,7 +4,7 @@ import { StoreService } from '../../services/store.service';
 import type { IFloor } from '../../../types';
 
 @Component({
-  selector: 'app-svg-house-floor',
+  selector: '[data-item="floor"]',
   standalone: true,
   imports: [SvgHouseBoxComponent],
   templateUrl: './svg-house-floor.component.svg',

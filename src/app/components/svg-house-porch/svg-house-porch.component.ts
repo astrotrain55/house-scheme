@@ -4,7 +4,7 @@ import { SvgLinesKtvComponent } from '../svg-lines-ktv/svg-lines-ktv.component';
 import type { IPorch } from '../../../types';
 
 @Component({
-  selector: 'app-svg-house-porch',
+  selector: '[data-item="porch"]',
   standalone: true,
   imports: [SvgHouseFloorComponent, SvgLinesKtvComponent],
   templateUrl: './svg-house-porch.component.svg',

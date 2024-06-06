@@ -3,7 +3,7 @@ import { StoreService } from '../../services/store.service';
 import type { IBoxCoords, IPorchCoordsCalculate } from '../../../types';
 
 @Component({
-  selector: 'app-svg-lines-net',
+  selector: '[data-item="internet"][data-name="Интернет"]',
   standalone: true,
   imports: [],
   templateUrl: './svg-lines-net.component.svg',

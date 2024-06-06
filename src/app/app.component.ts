@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { StoreService } from './services/store.service';
 import { ControlsComponent } from './components/controls/controls.component';
 import { SvgComponent } from './components/svg/svg.component';
+import { StoreService } from './services/store.service';
 
 @Component({
   selector: 'app-root',

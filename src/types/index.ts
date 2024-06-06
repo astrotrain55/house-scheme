@@ -49,6 +49,7 @@ export {
   HouseRoutingPosition,
   HouseBoxesPosition,
   HouseDirection,
+  IPorchRaw,
   IPorch,
   IPorchCoords,
   IPorchCoordsCalculate,

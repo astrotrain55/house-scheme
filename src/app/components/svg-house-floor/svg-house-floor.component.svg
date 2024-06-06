@@ -1,6 +1,4 @@
 <svg:g
-  data-item="floor"
-  [attr.data-name]="floorNumber"
   (mouseenter)="visibleButtons = true"
   (mouseleave)="visibleButtons = false"
 >
@@ -43,11 +41,14 @@
 
   <g data-item="boxes" data-name="Ящики">
     @for (item of floor.boxes; track item.id; let index = $index) {
-      <app-svg-house-box
+      <g
+        data-item="box"
+        [attr.data-name]="item.name"
+        [attr.data-id]="item.id"
         [box]="item"
         [color]="floor.porch.debug() ? floor.color : item.origin ? '#ff7f50' : colors.box.value"
         [points]="pointsBoxes[index].points"
-      ></app-svg-house-box>
+      ></g>
     }
   </g>
 
@@ -108,29 +109,27 @@
   }
 
   @if (floor.moving && firstPorch) {
-    <ng-template>
-      <foreignObject
-        [attr.x]="coords.right - 340"
-        [attr.y]="coords.top"
-        [attr.width]="20"
-        [attr.height]="20"
-      >
-        <button
-          class="moving-button"
-          (click)="movingTechFloor('up', floor)"
-        >&#8593;</button>
-      </foreignObject>
-      <foreignObject
-        [attr.x]="coords.right - 340"
-        [attr.y]="coords.top + floor.sizes.height - 20"
-        [attr.width]="20"
-        [attr.height]="20"
-      >
-        <button
-          class="moving-button"
-          (click)="movingTechFloor('down', floor)"
-        >&#8595;</button>
-      </foreignObject>
-    </ng-template>
+    <foreignObject
+      [attr.x]="coords.right - 340"
+      [attr.y]="coords.top"
+      [attr.width]="20"
+      [attr.height]="20"
+    >
+      <button
+        class="moving-button"
+        (click)="movingTechFloor('up', floor)"
+      >&#8593;</button>
+    </foreignObject>
+    <foreignObject
+      [attr.x]="coords.right - 340"
+      [attr.y]="coords.top + floor.sizes.height - 20"
+      [attr.width]="20"
+      [attr.height]="20"
+    >
+      <button
+        class="moving-button"
+        (click)="movingTechFloor('down', floor)"
+      >&#8595;</button>
+    </foreignObject>
   }
 </svg:g>

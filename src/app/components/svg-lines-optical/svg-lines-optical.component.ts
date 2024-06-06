@@ -7,7 +7,7 @@ import type {
 } from '../../../types';
 
 @Component({
-  selector: 'app-svg-lines-optical',
+  selector: '[data-item="optical"]',
   standalone: true,
   imports: [],
   templateUrl: './svg-lines-optical.component.svg',

@@ -1,11 +1,9 @@
-<svg:g data-item="optical" data-name="Оптика">
-  @for (line of lines; track index; let index = $index) {
-    <polyline
-      [attr.points]="line.points"
-      [attr.stroke]="line.color"
-      [attr.stroke-dasharray]="line.dash"
-      stroke-width="2"
-      fill="none"
-    ></polyline>
-  }
-</svg:g>
+@for (line of lines; track index; let index = $index) {
+  <svg:polyline
+    [attr.points]="line.points"
+    [attr.stroke]="line.color"
+    [attr.stroke-dasharray]="line.dash"
+    stroke-width="2"
+    fill="none"
+  ></svg:polyline>
+}
