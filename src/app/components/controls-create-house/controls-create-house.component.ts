@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { CounterComponent } from '../ui/counter/counter.component';
 import { StoreService } from '../../services/store.service';
 
@@ -18,7 +18,7 @@ interface IScheme {
   templateUrl: './controls-create-house.component.html',
   styleUrl: './controls-create-house.component.scss',
 })
-export class ControlsCreateHouseComponent implements OnChanges {
+export class ControlsCreateHouseComponent {
   public scheme: IScheme = {
     porchesCount: 6,
     floorsCount: 9,
@@ -28,16 +28,6 @@ export class ControlsCreateHouseComponent implements OnChanges {
   };
 
   constructor(private store: StoreService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // 'scheme.porchesCount': (value) => {
-    //   if (this.scheme.boxPorch > value) this.scheme.boxPorch = value;
-    // }
-    //
-    // 'scheme.floorsCount': (value) => {
-    //   if (this.scheme.boxFloor > value) this.scheme.boxFloor = value;
-    // }
-  }
 
   createDefaultScheme() {
     this.store.createDefaultScheme();
@@ -74,5 +64,15 @@ export class ControlsCreateHouseComponent implements OnChanges {
       },
       porches,
     });
+  }
+
+  onPorchesCount(value: number) {
+    this.scheme.porchesCount = value;
+    if (this.scheme.boxPorch > value) this.scheme.boxPorch = value;
+  }
+
+  onFloorCount(value: number) {
+    this.scheme.floorsCount = value;
+    if (this.scheme.boxFloor > value) this.scheme.boxFloor = value;
   }
 }

@@ -20,4 +20,9 @@ export interface IHouse {
   boxesPosition: HouseBoxesPosition;
   visibleAll: boolean;
   debug: boolean;
+  toggle(visibleAll: boolean): void;
+  toggleDebug(debug: boolean): void;
+  toggleRoutingPosition(routingPosition: HouseRoutingPosition): void;
+  toggleDirection(directionCalculation: HouseDirection): void;
+  toggleBoxesPosition(boxesPosition: HouseBoxesPosition): void;
 }

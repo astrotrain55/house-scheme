@@ -1,6 +1,6 @@
 {
   "name": "house-scheme-svg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "license": "GPL",
   "scripts": {
@@ -11,7 +11,7 @@
     "test": "ng test",
     "format": "prettier . --write",
     "grep": "sh grep.sh",
-    "public": "npm run build && gh-pages -d dist"
+    "public": "npm run build && gh-pages -d dist/house-scheme-svg/browser"
   },
   "dependencies": {
     "@angular/animations": "^18.0.0",

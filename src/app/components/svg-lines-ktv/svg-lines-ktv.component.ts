@@ -40,7 +40,7 @@ export class SvgLinesKtvComponent {
     const { top } = startFloor.coords;
     const { bottom } = endFloor.coords;
     const porchRight = this.coords.right;
-    const coords = indexes.map((left) =>
+    const coords: number[][][][] = indexes.map((left) =>
       [left, left + 6, left + 12, left + 18].map((offset) => [
         [porchRight + offset, top],
         [porchRight + offset, bottom],

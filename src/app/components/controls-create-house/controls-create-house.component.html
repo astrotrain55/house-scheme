@@ -4,7 +4,7 @@
     <app-counter
       [defaultNumber]="scheme.porchesCount"
       [min]="1"
-      (update)="scheme.porchesCount = $event"
+      (update)="onPorchesCount($event)"
     ></app-counter>
   </div>
   <div>
@@ -12,7 +12,7 @@
     <app-counter
       [defaultNumber]="scheme.floorsCount"
       [min]="1"
-      (update)="scheme.floorsCount = $event"
+      (update)="onFloorCount($event)"
     ></app-counter>
   </div>
   <div>

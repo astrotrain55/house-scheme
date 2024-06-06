@@ -1,10 +1,15 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ControlsCreateHouseComponent } from '../controls-create-house/controls-create-house.component';
 import { ControlsPorchComponent } from '../controls-porch/controls-porch.component';
 import { PopupComponent } from '../ui/popup/popup.component';
 import { TabsComponent } from '../ui/tabs/tabs.component';
 import { StoreService } from '../../services/store.service';
+import type {
+  HouseBoxesPosition,
+  HouseDirection,
+  HouseRoutingPosition,
+} from '../../../types';
 
 @Component({
   selector: 'app-controls',
@@ -18,16 +23,16 @@ import { StoreService } from '../../services/store.service';
   ],
   templateUrl: './controls.component.html',
 })
-export class ControlsComponent implements OnInit, OnChanges {
-  visibleAll: boolean = false;
-  debug: boolean = false;
-  routingPosition: string = 'bottom';
-  directionCalculation: string = 'left';
-  boxesPosition: string = 'default';
-  modal = {
+export class ControlsComponent implements OnInit {
+  public visibleAll: boolean = false;
+  public debug: boolean = false;
+  public routingPosition: HouseRoutingPosition = 'bottom';
+  public directionCalculation: HouseDirection = 'left';
+  public boxesPosition: HouseBoxesPosition = 'default';
+  public modal = {
     show: false,
   };
-  tabs = {
+  public tabs = {
     show: 0,
   };
 
@@ -41,29 +46,6 @@ export class ControlsComponent implements OnInit, OnChanges {
     this.boxesPosition = this.store.config.house.boxesPosition;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // visibleAll() {
-    //   this.config.house.toggle(this.visibleAll);
-    //   this.updateCoords();
-    // },
-    // debug() {
-    //   this.config.house.toggleDebug(this.debug);
-    //   this.updateCoords();
-    // },
-    // routingPosition() {
-    //   this.config.house.toggleRoutingPosition(this.routingPosition);
-    //   this.updateCoords();
-    // },
-    // directionCalculation() {
-    //   this.config.house.toggleDirection(this.directionCalculation);
-    //   this.updateCoords();
-    // },
-    // boxesPosition() {
-    //   this.config.house.toggleBoxesPosition(this.boxesPosition);
-    //   this.updateCoords();
-    // },
-  }
-
   autoBoxes() {
     this.store.autoBoxes();
   }
@@ -74,5 +56,30 @@ export class ControlsComponent implements OnInit, OnChanges {
 
   get names() {
     return this.porches.map((porch) => porch.name);
+  }
+
+  onVisibleAll() {
+    this.store.config.house.toggle(this.visibleAll);
+    this.store.updateCoords();
+  }
+
+  onDebug() {
+    this.store.config.house.toggleDebug(this.debug);
+    this.store.updateCoords();
+  }
+
+  onRoutingPosition() {
+    this.store.config.house.toggleRoutingPosition(this.routingPosition);
+    this.store.updateCoords();
+  }
+
+  onDirectionCalculation() {
+    this.store.config.house.toggleDirection(this.directionCalculation);
+    this.store.updateCoords();
+  }
+
+  onBoxesPosition() {
+    this.store.config.house.toggleBoxesPosition(this.boxesPosition);
+    this.store.updateCoords();
   }
 }

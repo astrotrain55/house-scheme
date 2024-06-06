@@ -33,6 +33,8 @@ export interface IPorch {
   visibleAll(): boolean;
   debug(): boolean;
   setFloors(floors: IFloor[]): void;
+  changeOffset(offset: number): void;
+  toggle(): void;
 }
 
 export interface IPorchCoords {

@@ -1,11 +1,11 @@
-@for (line of ktvList.polyline; track line) {
+@for (line of ktvList.polyline; track index; let index = $index) {
   <svg:polyline
     [attr.points]="line"
     [attr.stroke]="color"
     fill="none"
   ></svg:polyline>
 }
-@for (rect of ktvList.rect; track rect) {
+@for (rect of ktvList.rect; track index; let index = $index) {
   <svg:rect
     [attr.x]="rect.x"
     [attr.y]="rect.y"

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CounterComponent } from '../ui/counter/counter.component';
 import { StoreService } from '../../services/store.service';
@@ -17,7 +11,7 @@ import type { IFloor, IPorch } from '../../../types';
   templateUrl: './controls-porch.component.html',
   styleUrl: './controls-porch.component.scss',
 })
-export class ControlsPorchComponent implements OnInit, OnChanges {
+export class ControlsPorchComponent implements OnInit {
   @Input({ required: true }) public porch: IPorch;
   public offset: number = 0;
   public visible: boolean = true;
@@ -32,17 +26,6 @@ export class ControlsPorchComponent implements OnInit, OnChanges {
     this.porch.risers.list.forEach((riser) => {
       this.risers.push(riser);
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // offset() {
-    //   this.porch.changeOffset(this.offset);
-    //   this.updateCoords();
-    // },
-    // visible() {
-    //   this.porch.toggle();
-    //   this.updateCoords();
-    // },
   }
 
   toggleVisibleFloor(floor: IFloor) {
@@ -102,5 +85,15 @@ export class ControlsPorchComponent implements OnInit, OnChanges {
     const floors = this.store.porches.map((porch) => porch.floors[floorIndex]);
     console.log(floors);
     return floors;
+  }
+
+  onOffset() {
+    this.porch.changeOffset(this.offset);
+    this.store.updateCoords();
+  }
+
+  onVisible() {
+    this.porch.toggle();
+    this.store.updateCoords();
   }
 }

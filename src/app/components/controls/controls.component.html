@@ -3,33 +3,33 @@
   <div>
     <span>Расположение ящиков</span>
     <label>
-      <input type="radio" [(ngModel)]="boxesPosition" value="default">
+      <input type="radio" [(ngModel)]="boxesPosition" value="default" (change)="onBoxesPosition()">
       <span>Жилые этажи</span>
     </label>
     <label>
-      <input type="radio" [(ngModel)]="boxesPosition" value="tech">
+      <input type="radio" [(ngModel)]="boxesPosition" value="tech" (change)="onBoxesPosition()">
       <span>Тех.этажи</span>
     </label>
   </div>
   <div>
     <span>Разводка</span>
     <label>
-      <input type="radio" [(ngModel)]="routingPosition" value="top">
+      <input type="radio" [(ngModel)]="routingPosition" value="top" (change)="onRoutingPosition()">
       <span>Сверху</span>
     </label>
     <label>
-      <input type="radio" [(ngModel)]="routingPosition" value="bottom">
+      <input type="radio" [(ngModel)]="routingPosition" value="bottom" (change)="onRoutingPosition()">
       <span>Снизу</span>
     </label>
   </div>
   <div>
     <span>Направление</span>
     <label>
-      <input type="radio" [(ngModel)]="directionCalculation" value="left">
+      <input type="radio" [(ngModel)]="directionCalculation" value="left" (change)="onDirectionCalculation()">
       <span>Слева</span>
     </label>
     <label>
-      <input type="radio" [(ngModel)]="directionCalculation" value="right">
+      <input type="radio" [(ngModel)]="directionCalculation" value="right" (change)="onDirectionCalculation()">
       <span>Справа</span>
     </label>
   </div>
@@ -49,7 +49,7 @@
       [defaultValue]="tabs.show"
       (update)="tabs.show = $event"
     >
-      @for (porch of porches; track key; let key = $index) {
+      @for (porch of porches; track porch.id; let key = $index) {
         <app-controls-porch
           [porch]="porch"
           [class.active]="tabs.show === key"
@@ -59,13 +59,13 @@
   </app-popup>
   <div>
     <label>
-      <input type="checkbox" [(ngModel)]="debug">
+      <input type="checkbox" [(ngModel)]="debug" (change)="onDebug()">
       <span>Отладка</span>
     </label>
   </div>
   <div>
     <label>
-      <input type="checkbox" [(ngModel)]="visibleAll">
+      <input type="checkbox" [(ngModel)]="visibleAll" (change)="onVisibleAll()">
       <span>Показать всё</span>
     </label>
   </div>

@@ -4,7 +4,7 @@
       <div>Количество квартир: {{ porch.appt }}</div>
       <div>
         <label>
-          <input type="checkbox" [(ngModel)]="visible" />
+          <input type="checkbox" [(ngModel)]="visible" (change)="onVisible()" />
           <span>Показать подъезд</span>
         </label>
       </div>
@@ -16,6 +16,7 @@
             max="2"
             step="0.5"
             [(ngModel)]="offset"
+            (change)="onOffset()"
           />
         </label>
       </div>
