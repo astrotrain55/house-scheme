@@ -1,3 +1,9 @@
+:host {
+  &:not(.active) {
+    display: none;
+  }
+}
+
 .table-porch {
   border-collapse: collapse;
   width: 100%;

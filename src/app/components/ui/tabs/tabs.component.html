@@ -3,7 +3,7 @@
     @for (name of names; track name; let key = $index) {
       <button
         class="app-tabs__button"
-        [class.active]="index === key"
+        [class.active]="defaultValue === key"
         (click)="onChange(key)"
       >
         {{ name }}

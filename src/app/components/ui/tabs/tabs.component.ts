@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
@@ -7,18 +7,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './tabs.component.html',
   styleUrl: './tabs.component.scss',
 })
-export class TabsComponent implements OnInit {
+export class TabsComponent {
   @Input({ required: true }) public names: string[];
   @Input() public defaultValue: number = 0;
   @Output() public update: EventEmitter<number> = new EventEmitter<number>();
-  public index: number = 0;
-
-  ngOnInit(): void {
-    this.index = this.defaultValue;
-  }
 
   onChange(index: number) {
-    this.index = index;
     this.update.emit(index);
   }
 }
